@@ -1,0 +1,16 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Thu Jan 20 10:34:08 2022
+# Process ID: 256457
+# Current directory: /home/xilinx/ros2_ws/src/platforms/Vitis-Tutorials/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step3_pfm_krs/platform_repo/kv260_custom_platform/export/kv260_custom_platform/hw
+# Command line: vivado
+# Log file: /home/xilinx/ros2_ws/src/platforms/Vitis-Tutorials/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step3_pfm_krs/platform_repo/kv260_custom_platform/export/kv260_custom_platform/hw/vivado.log
+# Journal file: /home/xilinx/ros2_ws/src/platforms/Vitis-Tutorials/Vitis_Platform_Creation/Design_Tutorials/01-Edge-KV260/ref_files/step3_pfm_krs/platform_repo/kv260_custom_platform/export/kv260_custom_platform/hw/vivado.jou
+# Running On: xilinx, OS: Linux, CPU Frequency: 1400.000 MHz, CPU Physical cores: 12, Host memory: 16145 MB
+#-----------------------------------------------------------
+start_gui
+ls
+open_hw_platform ./kv260_custom_platform.xsa
+update_compile_order -fileset sources_1

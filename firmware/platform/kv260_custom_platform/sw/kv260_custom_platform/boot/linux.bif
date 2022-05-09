@@ -1,0 +1,10 @@
+/* linux */
+the_ROM_image:
+{
+  [bootloader, destination_cpu = a53-0] <kv260_custom_platform/../../../zynqmp_fsbl.elf>
+  [destination_cpu=a53-0, exception_level=el-3, trustzone] <kv260_custom_platform/../../../bl31.elf>
+  [destination_cpu=a53-0, load=0x00100000] <kv260_custom_platform/../../../device_tree/u-boot.dtb>
+  [destination_cpu=a53-0, exception_level=el-2] <kv260_custom_platform/../../../u-boot.elf>
+  [pmufw_image] <kv260_custom_platform/../../../pmufw.elf>
+  [destination_device=pl] <bitstream>
+}
