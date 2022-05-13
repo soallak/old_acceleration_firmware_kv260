@@ -117,7 +117,7 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [current_project]
-set_property -name "board_part" -value "xilinx.com:kv260_som:part0:1.2" -objects $obj
+set_property -name "board_part" -value "xilinx.com:k26c:part0:1.1" -objects $obj
 set_property -name "board_connections" -value "som240_1_connector xilinx.com:som240:som240_1_connector:1.0" -objects $obj
 set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "enable_vhdl_2008" -value "1" -objects $obj

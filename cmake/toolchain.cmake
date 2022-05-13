@@ -5,17 +5,13 @@ set(CMAKE_VERBOSE_MAKEFILE:BOOL ON) # pushed to here, instead of as within
                                     # --cmake-args
 
 set(FIRMWARE_DIR __FIRMWARE_DIR__)
-set(VITIS_DIR __VITIS_DIR__)
 set(INSTALL_DIR __INSTALL_DIR__)
+set(COMPILER_INSTALL_DIR __COMPILER_INSTALL_DIR__)
 
 # Specify the cross compiler
-set(COMPILER_PREFIX ${VITIS_DIR}/gnu/aarch64/lin/aarch64-linux/)
-set(CMAKE_C_COMPILER
-    /home/swallak/Dev/work/plc2/kv260/crosscompiler/install/bin/aarch64-linux-gnu-gcc
-)
-set(CMAKE_CXX_COMPILER
-    /home/swallak/Dev/work/plc2/kv260/crosscompiler/install/bin/aarch64-linux-gnu-g++
-)
+set(COMPILER_INSTALL_DIR /opt/aarch64-linux-gnu-kv260-ubuntu-20.04)
+set(CMAKE_C_COMPILER ${COMPILER_INSTALL_DIR}/bin/aarch64-linux-gnu-gcc)
+set(CMAKE_CXX_COMPILER ${COMPILER_INSTALL_DIR}/bin/aarch64-linux-gnu-g++)
 
 # Specify the target file system
 set(CMAKE_SYSROOT /home/swallak/Dev/work/plc2/kv260/crosscompiler/sysroot)
@@ -27,16 +23,16 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
-# for the same reason, i do this manually
-set(LINKER_FLAGS_INIT
-    "-Wl,--unresolved-symbols=ignore-all --sysroot=${CMAKE_SYSROOT} -L${CMAKE_SYSROOT}/lib -L${CMAKE_SYSROOT}/usr/lib/ -L${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu -L${CMAKE_SYSROOT}/lib/aarch64-linux-gnu  -Wl,-rpath-link=${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu,-rpath-link=${CMAKE_SYSROOT}/usr/lib,-rpath-link=${CMAKE_SYSROOT}/lib/aarch64-linux-gnu"
+set(ENV{PKG_CONFIG_SYSROOT_DIR} ${CMAKE_SYSROOT})
+set(ENV{PKG_CONFIG_LIBDIR}
+    "${CMAKE_SYSROOT}/usr/lib/pkgconfig:${CMAKE_SYSROOT}/usr/share/pkgconfig:${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu/pkgconfig/"
 )
-set(CMAKE_SHARED_LINKER_FLAGS_INIT ${LINKER_FLAGS_INIT})
-set(CMAKE_EXE_LINKER_FLAGS_INIT ${LINKER_FLAGS_INIT})
+set(ENV{PKG_CONFIG_PATH}
+    "${CMAKE_SYSROOT}/usr/lib/pkgconfig:${CMAKE_SYSROOT}/usr/share/pkgconfig:${CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu/pkgconfig/"
+)
 
-set(CMAKE_INSTALL_RPATH ${CMAKE_SYSROOT}/usr/lib
-                        {CMAKE_SYSROOT}/usr/lib/aarch64-linux-gnu)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_SHARED_LINKER_FLAGS_INIT "-Wl,--unresolved-symbols=ignore-all")
+set(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,--unresolved-symbols=ignore-all")
 
 # to fix FindThread
 set(CMAKE_THREAD_LIBS_INIT "-lpthread")
